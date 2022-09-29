@@ -14,37 +14,35 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class Handler {
 
-    public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest){
-        String id = serverRequest.queryParam ( "id" ).orElse ( "" );
-        return ServerResponse.ok ( ).body ( getCookie (id ) , Flux.class );
+    public Mono < ServerResponse > listenGETUseCase ( ServerRequest serverRequest ) {
+        String id = serverRequest.queryParam ( "id" ).orElse ( "Id no encontrado" );
+        return ServerResponse.ok ( ).body ( getCookie ( id ) , Flux.class );
     }
 
     private Flux < Cookie > getCookie ( String id ) {
-        Flux < Cookie > typesCookie = Flux.fromIterable ( Arrays.asList(
-                new Cookie ( "1" , "Cookie de chocolate" ),
-                new Cookie ( "2" , "Cookie de vainilla" ),
-                new Cookie ( "3" , "Cookie de fresa" ),
-                new Cookie ( "4" , "Cookie de limon" ),
-                new Cookie ( "5" , "Cookie de manjar" ),
-                new Cookie ( "6" , "Cookie de mantequilla" ),
-                new Cookie ( "7" , "Cookie de avena" ),
-                new Cookie ( "8" , "Cookie de arroz" ),
-                new Cookie ( "9" , "Cookie de maiz" ),
-                new Cookie ( "10" , "Cookie de coco" ),
-                new Cookie ( "11" , "Cookie de almendra" ),
-                new Cookie ( "12" , "Cookie de nuez" ),
-                new Cookie ( "13" , "Cookie de mani" ),
-                new Cookie ( "14" , "Cookie de queso" ),
+        Flux < Cookie > typesCookie = Flux.fromIterable ( Arrays.asList (
+                new Cookie ( "1" , "Cookie de chocolate" ) ,
+                new Cookie ( "2" , "Cookie de vainilla" ) ,
+                new Cookie ( "3" , "Cookie de fresa" ) ,
+                new Cookie ( "4" , "Cookie de limon" ) ,
+                new Cookie ( "5" , "Cookie de manjar" ) ,
+                new Cookie ( "6" , "Cookie de mantequilla" ) ,
+                new Cookie ( "7" , "Cookie de avena" ) ,
+                new Cookie ( "8" , "Cookie de arroz" ) ,
+                new Cookie ( "9" , "Cookie de maiz" ) ,
+                new Cookie ( "10" , "Cookie de coco" ) ,
+                new Cookie ( "11" , "Cookie de almendra" ) ,
+                new Cookie ( "12" , "Cookie de nuez" ) ,
+                new Cookie ( "13" , "Cookie de mani" ) ,
+                new Cookie ( "14" , "Cookie de queso" ) ,
                 new Cookie ( "15" , "Cookie de mermelada" )
 
-        ));
+        ) );
 
         return typesCookie
-                .filter ( cookie -> cookie.getId ().equals ( id ))
+                .filter ( cookie -> cookie.getId ( ).equals ( id ) )
                 .switchIfEmpty ( Mono.error ( new Exception ( "No  existe el id" ) ) )
-                .onErrorResume ( error ->{
-                        return Mono.just ( new Cookie ( id, "No hay galletas con ese Id" ) );
-                } );
+                .onErrorResume ( error -> Mono.just ( new Cookie ( id , "No hay galletas con ese Id" ) ) );
     }
 
-    }
+}
