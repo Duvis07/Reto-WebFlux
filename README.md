@@ -49,11 +49,11 @@ Este módulo es el más externo de la arquitectura, es el encargado de ensamblar
 
 Crear un proyecto para una empresa de "Galletas", debe contener las siguientes instrucciones;
 
-Crear proyecto con Clean Architecture
-Crear EndPoint con Webflux
-El proyecto tenga una lista de los tipos de galletas, mínimo 10
-Crear un servicio para consultar un tipo de galleta por código
-Todo debe ser reactivo
+Crear proyecto con Clean Architecture,
+Crear EndPoint con Webflux,
+El proyecto tenga una lista de los tipos de galletas, mínimo 10,
+Crear un servicio para consultar un tipo de galleta por código,
+Todo debe ser reactivo,
 Se debe tener en cuenta el control de errores, cuando no se encuentra una galleta
 
 ![image](https://user-images.githubusercontent.com/96325513/193156201-016ffe92-464b-4238-aa37-14c7dfaff261.png)
