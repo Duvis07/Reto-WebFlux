@@ -20,7 +20,7 @@ public class Handler {
     }
 
     private Flux < Cookie > getCookie ( String id ) {
-        Flux < Cookie > typesCookie = Flux.fromIterable ( Arrays.asList (
+        Flux < Cookie > typeCookie = Flux.fromIterable ( Arrays.asList (
                 new Cookie ( "1" , "Cookie de chocolate" ) ,
                 new Cookie ( "2" , "Cookie de vainilla" ) ,
                 new Cookie ( "3" , "Cookie de fresa" ) ,
@@ -39,7 +39,7 @@ public class Handler {
 
         ) );
 
-        return typesCookie
+        return typeCookie
                 .filter ( cookie -> cookie.getId ( ).equals ( id ) )
                 .switchIfEmpty ( Mono.error ( new Exception ( "No  existe el id" ) ) )
                 .onErrorResume ( error -> Mono.just ( new Cookie ( id , "No hay galletas con ese Id" ) ) );
